@@ -11,12 +11,15 @@
 <body>
     INSIRA A PLACA: <input type="text" name="PlacaPost" id="PlacaPost">
     <br><br>
+    MARCA: <input type="text" name="Marca" id="Marca"><br>
     MODELO: <input type="text" name="Modelo" id="Modelo"><br>
     ANO: <input type="text" name="Ano" id="Ano"><br>
     COR: <input type="text" name="Cor" id="Cor"><br>
     PLACA: <input type="text" name="Placa" id="Placa"><br>
     CHASSI: <input type="text" name="Chassi" id="Chassi"><br>
-    SITUACAO: <input type="text" name="Situacao" id="Situacao"><br><br>
+    SITUACAO: <input type="text" name="Situacao" id="Situacao"><br>
+    MUNICIPIO: <input type="text" name="Municipio" id="Municipio"><br>
+    ESTADO: <input type="text" name="UF" id="UF"><br><br>
     DATA CONSULTA: <input type="text" name="DataConsulta" id="DataConsulta"><br>
     
     <div id="postRequest">
@@ -35,17 +38,31 @@
                     method: "GET",
                     url: url,
                     beforeSend: function(xhr){
-                        //show load gif
-                        //console.log("mostra o gif monstro!!!");
+                        document.getElementById("Marca").value = "...";
+                    document.getElementById("Modelo").value = "...";
+                    document.getElementById("Ano").value = "...";
+                    document.getElementById("Cor").value = "...";
+                    document.getElementById("Placa").value = "...";
+                    document.getElementById("Chassi").value = "...";
+                    document.getElementById("Municipio").value = "...";
+                    document.getElementById("UF").value = "...";
+                    document.getElementById("Situacao").value = "...";
+                    document.getElementById("DataConsulta").value = "...";
                     }
                 })
                 .done(function(retorno) {
                     //console.log(retorno);
+                    document.getElementById("Marca").value = retorno.marca;
+                    if(document.getElementById("Marca").value == "") {
+                        alert("CARRO NÃO ENCONTRADO");
+                    }
                     document.getElementById("Modelo").value = retorno.modelo;
                     document.getElementById("Ano").value = retorno.ano;
                     document.getElementById("Cor").value = retorno.cor;
                     document.getElementById("Placa").value = retorno.placa;
                     document.getElementById("Chassi").value = retorno.chassi;
+                    document.getElementById("Municipio").value = retorno.municipio;
+                    document.getElementById("UF").value = retorno.uf;
                     document.getElementById("Situacao").value = retorno.situacao;
                     document.getElementById("DataConsulta").value = retorno.dataConsulta;
                 }).fail(function(erro){
