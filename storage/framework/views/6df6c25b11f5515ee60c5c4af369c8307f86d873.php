@@ -26,19 +26,17 @@
     <script>
         $(document).ready(function(){
             $("#PlacaPost").focusout(function(){
-                
+
                 var url = "/buscar-json-get/||placa||";
                 var placa = $("#PlacaPost").val();
-                console.log(placa);
                 url = url.replace("||placa||", placa);
-                console.log(url);
                 
                 $.ajax({
                     method: "GET",
                     url: url,
                     beforeSend: function(xhr){
                         //show load gif
-                        console.log("mostra o gif monstro!!!");
+                        //console.log("mostra o gif monstro!!!");
                     }
                 })
                 .done(function(retorno) {
